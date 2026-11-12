@@ -49,10 +49,10 @@ export default async function handler(req: NextRequest): Promise<Response> {
       await getFromStore(process.env as any, 'state')
     )
 
-    const lastIncident = compactedState.getIncident(
-      monitorId,
-      compactedState.incidentLen(monitorId) - 1
-    )
+    const incidentCount = compactedState.incidentLen(monitorId)
+    // A monitor with no incidents yet has never been observed down.
+    const lastIncident =
+      incidentCount > 0 ? compactedState.getIncident(monitorId, incidentCount - 1) : undefined
     const isUp = lastIncident?.end !== null
 
     const badge: BadgePayload = {

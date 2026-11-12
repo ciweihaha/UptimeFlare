@@ -26,10 +26,10 @@ export default async function handler(req: NextRequest): Promise<Response> {
   let monitors: any = {}
 
   for (let monitor of workerConfig.monitors) {
-    const lastIncident = compactedState.getIncident(
-      monitor.id,
-      compactedState.incidentLen(monitor.id) - 1
-    )
+    const incidentCount = compactedState.incidentLen(monitor.id)
+    // A monitor with no incidents yet has never been observed down.
+    const lastIncident =
+      incidentCount > 0 ? compactedState.getIncident(monitor.id, incidentCount - 1) : undefined
 
     const isUp = lastIncident?.end !== null
     const latency = compactedState.getLastLatency(monitor.id)

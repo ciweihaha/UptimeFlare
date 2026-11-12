@@ -226,6 +226,17 @@ export class CompactedMonitorStateWrapper {
   getLastLatency(monitorId: string): LatencyRecord {
     let latencies = this.data.latency[monitorId]
 
+    if (!latencies) {
+      // No latency data yet (e.g. state migrated without latency, or the
+      // worker hasn't completed a check cycle). Return a neutral default
+      // instead of throwing, so API routes keep working.
+      return {
+        time: 0,
+        ping: 0,
+        loc: '',
+      }
+    }
+
     return {
       // @ts-expect-error
       time: new Uint32Array(Uint8Array.fromHex(latencies.time.slice(-8)).buffer)[0],
