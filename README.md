@@ -88,3 +88,7 @@ To contribute new features or customize your deployment furthermore, see [here](
 - [x] New header logo
 - [x] Improve CPU time usage
 - [x] Local deployment (docs WIP)
+
+## 部署说明（ciweihaha fork）
+
+本 fork 部署于 Cloudflare Pages（项目 `uptimeflare-status`，GitHub 关联部署），监控配置见 `uptime.config.ts`，状态数据存于 D1（`uptimeflare_d1`）。
