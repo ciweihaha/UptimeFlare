@@ -59,30 +59,6 @@ const workerConfig: WorkerConfig = {
       },
       responseKeyword: '"sites"',
     },
-    {
-      id: 'cfnew_panel',
-      name: 'CFnew 节点面板',
-      method: 'GET',
-      target: 'https://v.ciweihaha.win/',
-      tooltip: 'CFnew 代理节点 Worker',
-      expectedCodes: [200],
-      timeout: 15000,
-      headers: {
-        'User-Agent': 'Uptimeflare',
-      },
-    },
-    {
-      id: 'cf_bestip',
-      name: 'CF 优选 IP 测速页',
-      method: 'GET',
-      target: 'https://cf-bestip-2re.pages.dev',
-      tooltip: 'Cloudflare 优选 IP 测速页面',
-      expectedCodes: [200],
-      timeout: 15000,
-      headers: {
-        'User-Agent': 'Uptimeflare',
-      },
-    },
   ],
 }
 
